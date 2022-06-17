@@ -40,6 +40,7 @@ module.exports = {
       title: 'Todo List',
       filename: 'index.html',
       template: 'src/template.html',
+      favicon: './src/assets/favicon.png'
     })
   ],
 };
