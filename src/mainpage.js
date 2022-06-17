@@ -515,7 +515,7 @@ function getCurrentDate() {
 
 function getAllTasks() {
     const allTasks = [];
-    const mainTasks = JSON.parse(localStorage.getItem('main'));
+    const mainTasks = JSON.parse(localStorage.getItem('main')) || [];
     allTasks.push(...mainTasks);
     const newLists = JSON.parse(localStorage.getItem('newTaskLists')) || [];
     if (newLists.length > 0) {
