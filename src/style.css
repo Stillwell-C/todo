@@ -1,0 +1,608 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+}
+
+.header {
+    height: 60px;
+}
+
+.header {
+    background-color: #ADD8E6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    flex: 0 0 60px;
+}
+
+.header a,
+.header button {
+    cursor: pointer;
+}
+
+.header div {
+    margin: 1rem
+}
+
+.header-right {
+    display: flex;
+}
+
+.header-right button {
+    margin-right: 15px;
+    padding: 6px 12px;
+    background: none;
+    font-size: 1rem;
+    border: #000 2px solid;
+    color: #000;
+    border-radius: 5px;
+
+}
+
+.header-right button:hover {
+    border-color: #fafafa;
+    color: #fafafa;
+}
+
+.header img{
+    width: 30px;
+}
+
+.middle-container {
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+.sidebar {
+    position: absolute;
+    height: 100%;
+    width: 18rem;
+    background-color: #fafafa;
+    opacity: 0;
+    transform: translate(-100%);
+    transition: all 200ms ease-in-out;
+}
+
+.sidebar.active {
+    transform: translate(0);
+    opacity: 1;
+}
+
+.sidebar-lists {
+    margin: 1rem
+}
+
+.sidebar-lists li {
+    cursor: pointer;
+    list-style-type: none;
+    font-size: 1.3rem;
+    padding: .5rem;
+    margin-bottom: .5rem;
+}
+
+.sidebar-lists li:hover {
+    background-color: #fff;
+}
+
+#new-list-btn:hover {
+    background-color: rgba(255, 255, 255, 0);;
+}
+
+
+
+/* Main body task display */
+
+.main-body {
+    flex-grow: 1;
+    transition: all 200ms ease-in-out;
+    margin-left: 0rem;
+    overflow: auto;
+}
+
+.content-container {
+    display: flex;
+    justify-content: center;
+}
+
+.task-container {
+    width: clamp(250px, 80%, 650px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.header-title-div {
+   align-self: flex-start;
+}
+
+.task-line {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.task-line.dragging {
+    opacity: .5
+}
+
+.task-line-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid #333;
+    margin-bottom: 5px;
+}
+
+.task-line-left,
+.task-line-right {
+    margin-left: 5px;
+}
+
+.task-line-left{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.task-check {
+    margin-right: 10px;
+}
+
+.task-line-right {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 5px;
+}
+
+.task-line-right img {
+    cursor: pointer;
+    width: 1.3rem;
+    margin-right: 10px;
+}
+
+.task-line-bottom {
+    display: flex;
+    flex-direction: column;
+    height: 0;
+    overflow: hidden;
+    transition: all 200ms ease-in-out;
+    justify-content: flex-start;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.task-line-bottom.visible {
+    height: auto;
+    border: 1px solid #333;
+}
+
+.tl-btm-left, 
+.tl-btm-right  {
+    width: 100%;
+    margin: 0 5px;
+}
+
+.tl-btm-left div, 
+.tl-btm-right div {
+    margin-top: 5px;
+}
+
+.tl-btm-title {
+    font-weight: bold;
+}
+
+/* Input modal */
+
+.list-input-modal,
+.task-input-modal,
+.delete-list-modal,
+.delete-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: all 200ms ease-in-out;
+    border: 1px solid black;
+    border-radius: .3rem;
+    background-color: #fff;
+    width: 350px;
+    max-width: 80%;
+    transform: translate(-50%, -50%) scale(1);
+    z-index: 9;
+}
+
+.modal-header {
+    padding: 10px 15px;
+    display: flex;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+    background-color: #ADD8E6;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modal-close-button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modal-body,
+.list-modal-body,
+.delete-modal-body,
+.delete-list-modal-body {
+    padding: 10px 15px;
+}
+
+.form-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: center;
+
+}
+
+.form-top input,
+.form-top textarea,
+.form-top select {
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 1rem;
+}
+
+.form-top input[type='datetime-local'],
+.form-top select {
+    cursor: pointer;
+}
+
+.form-top label {
+    margin-bottom: 10px;
+}
+
+.form-top-left,
+.form-top-right {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-top-left textarea {
+    resize: none;
+}
+
+.form-bottom {
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.form-bottom button {
+    padding: 5px 10px;
+    margin-right: 2rem;
+    cursor: pointer;
+}
+
+.list-input-modal,
+.delete-modal,
+.delete-list-modal {
+    width: 300px;
+    height: 200px;
+}
+
+.list-modal-body {
+    margin: 20px;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-end;
+}
+
+
+.delete-list-modal-body {
+    margin-top: 1rem;
+}
+
+.list-modal-body button,
+.delete-btn-div button, 
+.delete-list-btn-div button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.list-modal-body button {
+    justify-self: flex-end;
+}
+
+.list-modal-input input {
+    margin-top: 5px;
+    padding: 2px 5px;
+}
+
+.delete-list-btn-div {
+    margin-top: 1rem;
+}
+
+.delete-btn-div,
+.delete-list-btn-div {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.delete-list-input-div {
+    margin-left: 1rem;
+}
+
+.delete-list-input-div > select {
+    margin-top: 5px;
+    padding: 2px 5px;
+    cursor: pointer;
+}
+
+#overlay {
+    position: fixed;
+    transition: 200ms ease-in-out;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: all;
+    opacity: 1;
+   
+}
+
+@media (min-width:767px) {
+    
+    .main-body.active {
+        margin-left: 17rem;
+    }
+
+    .task-container {
+        width: clamp(400px, 80%, 1000px);
+    }
+
+    .task-input-modal {
+        width: 700px;
+        max-width: 80%;
+    }
+
+    .form-top {
+        flex-direction: row;
+    }
+
+    .form-top label {
+        margin-bottom: 5px;
+    }
+
+    .task-line-top {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .task-line-right {
+        justify-content: flex-end;
+    }
+
+    .tl-btm-left, 
+    .tl-btm-right  {
+        width: 50%;
+    }
+
+    .task-line-bottom {
+        flex-direction: row;
+    }
+
+    #task-change-position-btn {
+        position: relative;
+    }
+    
+    #task-change-position-btn::before {
+        content: 'Change position';
+        background-color: #000;
+        color: #fff;
+        text-align: center;
+        border-radius: .25rem;
+        padding: 5px;
+        width: 70px;
+        opacity: 0;
+        transition: opacity 200ms ease-in-out;
+    
+        position: absolute;
+        z-index: 1;
+        left: -23px;
+        bottom: 110%;
+    }
+    
+    #task-change-position-btn:hover::before {
+        opacity: 1;
+    }
+    
+    #task-info-btn {
+        position: relative;
+    }
+    
+    #task-info-btn::before {
+        content: 'More information';
+        background-color: #000;
+        color: #fff;
+        text-align: center;
+        border-radius: .25rem;
+        padding: 5px;
+        width: 90px;
+        opacity: 0;
+        transition: opacity 200ms ease-in-out;
+    
+        position: absolute;
+        z-index: 1;
+        left: -32px;
+        bottom: 110%;
+    }
+    
+    #task-info-btn:hover::before {
+        opacity: 1;
+    }
+    
+    #task-edit-btn {
+        position: relative;
+    }
+    
+    #task-edit-btn::before {
+        content: 'Edit';
+        background-color: #000;
+        color: #fff;
+        text-align: center;
+        border-radius: .25rem;
+        padding: 5px;
+        width: 50px;
+        opacity: 0;
+        transition: opacity 200ms ease-in-out;
+    
+        position: absolute;
+        z-index: 1;
+        left: -10px;
+        bottom: 110%;
+    }
+    
+    #task-edit-btn:hover::before {
+        opacity: 1;
+    }
+    
+    .low-priority {
+        position: relative;
+    }
+    
+    .low-priority::before {
+        content: 'Low priority';
+        background-color: #000;
+        color: #fff;
+        text-align: center;
+        border-radius: .25rem;
+        padding: 5px;
+        width: 70px;
+        opacity: 0;
+        transition: opacity 200ms ease-in-out;
+    
+        position: absolute;
+        z-index: 1;
+        left: -25px;
+        bottom: 110%;
+    }
+    
+    .low-priority:hover::before {
+        opacity: 1;
+    }
+    
+    
+    .medium-priority {
+        position: relative;
+    }
+    
+    .medium-priority::before {
+        content: 'Medium priority';
+        background-color: #000;
+        color: #fff;
+        text-align: center;
+        border-radius: .25rem;
+        padding: 5px;
+        width: 70px;
+        opacity: 0;
+        transition: opacity 200ms ease-in-out;
+    
+        position: absolute;
+        z-index: 1;
+        left: -25px;
+        bottom: 110%;
+    }
+    
+    .medium-priority:hover::before {
+        opacity: 1;
+    }
+    
+    
+    .high-priority {
+        position: relative;
+    }
+    
+    .high-priority::before {
+        content: 'High priority';
+        background-color: #000;
+        color: #fff;
+        text-align: center;
+        border-radius: .25rem;
+        padding: 5px;
+        width: 70px;
+        opacity: 0;
+        transition: opacity 200ms ease-in-out;
+    
+        position: absolute;
+        z-index: 1;
+        left: -25px;
+        bottom: 110%;
+    }
+    
+    .high-priority:hover::before {
+        opacity: 1;
+    }
+    
+    #task-delete-btn {
+        position: relative;
+    }
+    
+    #task-delete-btn::before {
+        content: 'Delete';
+        background-color: #000;
+        color: #fff;
+        text-align: center;
+        border-radius: .25rem;
+        padding: 5px;
+        width: 60px;
+        opacity: 0;
+        transition: opacity 200ms ease-in-out;
+    
+        position: absolute;
+        z-index: 1;
+        left: -17px;
+        bottom: 110%;
+    }
+    
+    #task-delete-btn:hover::before {
+        opacity: 1;
+    }
+
+
+}
+
+@media (min-width:1024px) {
+    
+    
+
+    
+}
