@@ -7,7 +7,7 @@ module.exports = {
     main: path.resolve(__dirname, 'src/index.js'),
   },
   output: {
-    filename: '[name].[contenthash].js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
     assetModuleFilename: 'assets/[name][ext]'
@@ -38,7 +38,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Todo List',
-      filename: 'index.[contenthash].html',
+      filename: 'index.html',
       template: 'src/template.html',
     })
   ],
