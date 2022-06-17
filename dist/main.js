@@ -4318,7 +4318,6 @@ class Mainpage {
     initiateEventListeners() {
         this.addTaskButtonEvent()
         this.addMainBtnEvent()
-        this.addSideMenuEvent()
         this.addNewListBtnEvent()
         this.addDeleteNewListBtnEvent()
         this.addDeleteAllEvent()
@@ -4527,6 +4526,8 @@ class Mainpage {
         sideMenuBtnImg.id = 'open-side-menu'
         sideMenuBtnImg.setAttribute('alt', 'Open side menu button')
         sideMenuBtnContainer.appendChild(sideMenuBtnImg)
+
+        this.addSideMenuEvent()
     }
 
     
