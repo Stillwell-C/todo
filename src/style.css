@@ -32,6 +32,11 @@ body {
     cursor: pointer;
 }
 
+.header a {
+    height: 30px;
+    width: 30px;
+}
+
 .header div {
     margin: 1rem
 }
