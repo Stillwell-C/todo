@@ -4744,7 +4744,7 @@ class Mainpage {
         const currentTime = (0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(getCurrentDate());
         let today = getAllTasks().filter((task) => {
             const difference = (0,date_fns__WEBPACK_IMPORTED_MODULE_4__["default"])((0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(task.date), currentTime)
-            return difference <= 24
+            return difference <= 24 && difference >= 0
         }) || []
         if (today.length > 0) {
             today = today.sort((a, b) => (0,date_fns__WEBPACK_IMPORTED_MODULE_5__["default"])((0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(a.date), (0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(b.date)))
@@ -4757,7 +4757,7 @@ class Mainpage {
         const currentTime = (0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(getCurrentDate());
         let week = getAllTasks().filter((task) => {
             const difference = (0,date_fns__WEBPACK_IMPORTED_MODULE_6__["default"])((0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(task.date), currentTime)
-            return difference <= 7
+            return difference <= 7 && difference >= 0
         }) || []
         if (week.length > 0) {
             week = week.sort((a, b) => (0,date_fns__WEBPACK_IMPORTED_MODULE_5__["default"])((0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(a.date), (0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(b.date)))
@@ -4798,8 +4798,8 @@ function getCurrentDate() {
 
 function getAllTasks() {
     const allTasks = [];
-    const mainTasks = JSON.parse(localStorage.getItem('main'));
-    allTasks.push(...mainTasks);
+    const mainTasks = JSON.parse(localStorage.getItem('main')) || [];
+    if (mainTasks.length > 0) allTasks.push(...mainTasks);
     const newLists = JSON.parse(localStorage.getItem('newTaskLists')) || [];
     if (newLists.length > 0) {
         newLists.forEach((list) => {
@@ -5587,4 +5587,4 @@ const main = new _tasklist_js__WEBPACK_IMPORTED_MODULE_0__["default"]('main');
 
 /******/ })()
 ;
-//# sourceMappingURL=main.e3b7a7e64e52c33d05f6.js.map
+//# sourceMappingURL=main.11ba1d0a15e88b035409.js.map

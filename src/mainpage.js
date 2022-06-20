@@ -446,7 +446,7 @@ export default class Mainpage {
         const currentTime = parseISO(getCurrentDate());
         let today = getAllTasks().filter((task) => {
             const difference = differenceInHours(parseISO(task.date), currentTime)
-            return difference <= 24
+            return difference <= 24 && difference >= 0
         }) || []
         if (today.length > 0) {
             today = today.sort((a, b) => compareAsc(parseISO(a.date), parseISO(b.date)))
@@ -459,7 +459,7 @@ export default class Mainpage {
         const currentTime = parseISO(getCurrentDate());
         let week = getAllTasks().filter((task) => {
             const difference = differenceInCalendarDays(parseISO(task.date), currentTime)
-            return difference <= 7
+            return difference <= 7 && difference >= 0
         }) || []
         if (week.length > 0) {
             week = week.sort((a, b) => compareAsc(parseISO(a.date), parseISO(b.date)))
