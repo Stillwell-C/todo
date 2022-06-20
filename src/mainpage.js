@@ -500,8 +500,8 @@ function getCurrentDate() {
 
 function getAllTasks() {
     const allTasks = [];
-    const mainTasks = JSON.parse(localStorage.getItem('main'));
-    allTasks.push(...mainTasks);
+    const mainTasks = JSON.parse(localStorage.getItem('main')) || [];
+    if (mainTasks.length > 0) allTasks.push(...mainTasks);
     const newLists = JSON.parse(localStorage.getItem('newTaskLists')) || [];
     if (newLists.length > 0) {
         newLists.forEach((list) => {
