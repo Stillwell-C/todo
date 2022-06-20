@@ -4292,11 +4292,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils.js */ "./src/utils.js");
 /* harmony import */ var _tasklist_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tasklist.js */ "./src/tasklist.js");
 /* harmony import */ var _completedTasklist_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./completedTasklist.js */ "./src/completedTasklist.js");
-/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/parseISO/index.js");
-/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/differenceInHours/index.js");
-/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/compareAsc/index.js");
-/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/differenceInCalendarDays/index.js");
-/* harmony import */ var _assets_menu_symbol_of_three_parallel_lines_svgrepo_com_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./assets/menu-symbol-of-three-parallel-lines-svgrepo-com.svg */ "./src/assets/menu-symbol-of-three-parallel-lines-svgrepo-com.svg");
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/parseISO/index.js");
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/differenceInHours/index.js");
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/compareAsc/index.js");
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/differenceInCalendarDays/index.js");
 
 
 
@@ -4307,10 +4306,8 @@ __webpack_require__.r(__webpack_exports__);
 class Mainpage {
 
     constructor() {
-
-        this.main = new _tasklist_js__WEBPACK_IMPORTED_MODULE_1__["default"]('main');
-        this.generatePage()
         this.initiateEventListeners()
+        this.main = new _tasklist_js__WEBPACK_IMPORTED_MODULE_1__["default"]('main');
         this.loadNewLists()
         
     }
@@ -4369,7 +4366,7 @@ class Mainpage {
     }
 
     addSideMenuEvent() {
-        const sideMenuBtn = document.querySelector('.open-side-menu-container')
+        const sideMenuBtn = document.getElementById('open-side-menu-img')
         const sideMenu = document.querySelector('.sidebar')
         const mainBody = document.querySelector('.main-body')
         sideMenuBtn.addEventListener('click', () => {
@@ -4517,16 +4514,18 @@ class Mainpage {
     }
 
     //Currently only adds img to a tag
-    generatePage() {
-       const headerLeft = document.querySelector('.header-left')
-        const sideMenuBtnContainer = document.querySelector('.open-side-menu-container')
-        sideMenuBtnContainer.firstChild.remove();
-        const sideMenuBtnImg = document.createElement('img')
-        sideMenuBtnImg.src = _assets_menu_symbol_of_three_parallel_lines_svgrepo_com_svg__WEBPACK_IMPORTED_MODULE_3__
-        sideMenuBtnImg.id = 'open-side-menu'
-        sideMenuBtnImg.setAttribute('alt', 'Open side menu button')
-        sideMenuBtnContainer.appendChild(sideMenuBtnImg)
-    }
+    // generatePage() {
+    //    const headerLeft = document.querySelector('.header-left')
+    //     const sideMenuBtnContainer = document.querySelector('.open-side-menu-container')
+    //     sideMenuBtnContainer.firstChild.remove();
+    //     const sideMenuBtnImg = document.createElement('img')
+    //     sideMenuBtnImg.src = sideMenuImg
+    //     sideMenuBtnImg.id = 'open-side-menu'
+    //     sideMenuBtnImg.setAttribute('alt', 'Open side menu button')
+    //     sideMenuBtnContainer.appendChild(sideMenuBtnImg)
+
+    //     this.addSideMenuEvent()
+    // }
 
     
     updateScreen(list) {
@@ -4757,26 +4756,26 @@ class Mainpage {
 
     //FIXME getCUrrentDate and getAllTasks throw typeerror. Same with below.
     parseDatesToday() {
-        const currentTime = (0,date_fns__WEBPACK_IMPORTED_MODULE_4__["default"])(getCurrentDate());
+        const currentTime = (0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(getCurrentDate());
         let today = getAllTasks().filter((task) => {
-            const difference = (0,date_fns__WEBPACK_IMPORTED_MODULE_5__["default"])((0,date_fns__WEBPACK_IMPORTED_MODULE_4__["default"])(task.date), currentTime)
+            const difference = (0,date_fns__WEBPACK_IMPORTED_MODULE_4__["default"])((0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(task.date), currentTime)
             return difference <= 24
         }) || []
         if (today.length > 0) {
-            today = today.sort((a, b) => (0,date_fns__WEBPACK_IMPORTED_MODULE_6__["default"])((0,date_fns__WEBPACK_IMPORTED_MODULE_4__["default"])(a.date), (0,date_fns__WEBPACK_IMPORTED_MODULE_4__["default"])(b.date)))
+            today = today.sort((a, b) => (0,date_fns__WEBPACK_IMPORTED_MODULE_5__["default"])((0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(a.date), (0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(b.date)))
         }
         localStorage.setItem('today', JSON.stringify(today));
         changeList('today')
     }
 
     parseDatesWeek() {
-        const currentTime = (0,date_fns__WEBPACK_IMPORTED_MODULE_4__["default"])(getCurrentDate());
+        const currentTime = (0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(getCurrentDate());
         let week = getAllTasks().filter((task) => {
-            const difference = (0,date_fns__WEBPACK_IMPORTED_MODULE_7__["default"])((0,date_fns__WEBPACK_IMPORTED_MODULE_4__["default"])(task.date), currentTime)
+            const difference = (0,date_fns__WEBPACK_IMPORTED_MODULE_6__["default"])((0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(task.date), currentTime)
             return difference <= 7
         }) || []
         if (week.length > 0) {
-            week = week.sort((a, b) => (0,date_fns__WEBPACK_IMPORTED_MODULE_6__["default"])((0,date_fns__WEBPACK_IMPORTED_MODULE_4__["default"])(a.date), (0,date_fns__WEBPACK_IMPORTED_MODULE_4__["default"])(b.date)))
+            week = week.sort((a, b) => (0,date_fns__WEBPACK_IMPORTED_MODULE_5__["default"])((0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(a.date), (0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(b.date)))
         }
         localStorage.setItem('week', JSON.stringify(week));
         changeList('week')
@@ -4815,7 +4814,7 @@ function getCurrentDate() {
 function getAllTasks() {
     const allTasks = [];
     const mainTasks = JSON.parse(localStorage.getItem('main')) || [];
-    allTasks.push(...mainTasks);
+    if (mainTasks.length > 0) allTasks.push(...mainTasks);
     const newLists = JSON.parse(localStorage.getItem('newTaskLists')) || [];
     if (newLists.length > 0) {
         newLists.forEach((list) => {
@@ -5463,16 +5462,6 @@ module.exports = __webpack_require__.p + "assets/grip-lines-solid-svgrepo-com.sv
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/info-svgrepo-com.svg";
-
-/***/ }),
-
-/***/ "./src/assets/menu-symbol-of-three-parallel-lines-svgrepo-com.svg":
-/*!************************************************************************!*\
-  !*** ./src/assets/menu-symbol-of-three-parallel-lines-svgrepo-com.svg ***!
-  \************************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-module.exports = __webpack_require__.p + "assets/menu-symbol-of-three-parallel-lines-svgrepo-com.svg";
 
 /***/ }),
 
