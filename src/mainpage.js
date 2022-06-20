@@ -2,14 +2,16 @@ import { makeTaskModal, closeModal } from "./utils.js"
 import TaskList from "./tasklist.js"
 import CompletedTaskList from "./completedTasklist.js";
 import { differenceInHours, differenceInCalendarDays, parseISO, compareAsc } from 'date-fns'
-
+import sideMenuImg from './assets/menu-symbol-of-three-parallel-lines-svgrepo-com.svg'
 
 
 export default class Mainpage {
 
     constructor() {
-        this.initiateEventListeners()
+
         this.main = new TaskList('main');
+        this.generatePage()
+        this.initiateEventListeners()
         this.loadNewLists()
         
     }
@@ -68,7 +70,7 @@ export default class Mainpage {
     }
 
     addSideMenuEvent() {
-        const sideMenuBtn = document.getElementById('open-side-menu-img')
+        const sideMenuBtn = document.querySelector('.open-side-menu-container')
         const sideMenu = document.querySelector('.sidebar')
         const mainBody = document.querySelector('.main-body')
         sideMenuBtn.addEventListener('click', () => {
@@ -216,18 +218,16 @@ export default class Mainpage {
     }
 
     //Currently only adds img to a tag
-    // generatePage() {
-    //    const headerLeft = document.querySelector('.header-left')
-    //     const sideMenuBtnContainer = document.querySelector('.open-side-menu-container')
-    //     sideMenuBtnContainer.firstChild.remove();
-    //     const sideMenuBtnImg = document.createElement('img')
-    //     sideMenuBtnImg.src = sideMenuImg
-    //     sideMenuBtnImg.id = 'open-side-menu'
-    //     sideMenuBtnImg.setAttribute('alt', 'Open side menu button')
-    //     sideMenuBtnContainer.appendChild(sideMenuBtnImg)
-
-    //     this.addSideMenuEvent()
-    // }
+    generatePage() {
+       const headerLeft = document.querySelector('.header-left')
+        const sideMenuBtnContainer = document.querySelector('.open-side-menu-container')
+        sideMenuBtnContainer.firstChild.remove();
+        const sideMenuBtnImg = document.createElement('img')
+        sideMenuBtnImg.src = sideMenuImg
+        sideMenuBtnImg.id = 'open-side-menu'
+        sideMenuBtnImg.setAttribute('alt', 'Open side menu button')
+        sideMenuBtnContainer.appendChild(sideMenuBtnImg)
+    }
 
     
     updateScreen(list) {
@@ -516,7 +516,7 @@ function getCurrentDate() {
 function getAllTasks() {
     const allTasks = [];
     const mainTasks = JSON.parse(localStorage.getItem('main')) || [];
-    if (mainTasks.length > 0) allTasks.push(...mainTasks);
+    allTasks.push(...mainTasks);
     const newLists = JSON.parse(localStorage.getItem('newTaskLists')) || [];
     if (newLists.length > 0) {
         newLists.forEach((list) => {
