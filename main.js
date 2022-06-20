@@ -4520,6 +4520,10 @@ class Mainpage {
     //Currently only adds img to a tag
     generatePage() {
        const headerLeft = document.querySelector('.header-left')
+    //    const sideMenuBtnContainer = document.createElement('a')
+    //    sideMenuBtnContainer.id = 'open-side-menu'
+    //    sideMenuBtnContainer.class = 'open-side-menu'
+    //    side
         const sideMenuBtnContainer = document.querySelector('.open-side-menu-container')
         sideMenuBtnContainer.firstChild.remove();
         const sideMenuBtnImg = document.createElement('img')
@@ -5609,7 +5613,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const mainpage = new _mainpage_js__WEBPACK_IMPORTED_MODULE_1__["default"]();
 
-// const main = new TaskList('main');
+const main = new _tasklist_js__WEBPACK_IMPORTED_MODULE_0__["default"]('main');
 })();
 
 /******/ })()
