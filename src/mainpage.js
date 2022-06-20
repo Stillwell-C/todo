@@ -2,7 +2,6 @@ import { makeTaskModal, closeModal } from "./utils.js"
 import TaskList from "./tasklist.js"
 import CompletedTaskList from "./completedTasklist.js";
 import { differenceInHours, differenceInCalendarDays, parseISO, compareAsc } from 'date-fns'
-import sideMenuImg from './assets/menu-symbol-of-three-parallel-lines-svgrepo-com.svg'
 
 
 export default class Mainpage {
@@ -10,10 +9,8 @@ export default class Mainpage {
     constructor() {
 
         this.main = new TaskList('main');
-        this.generatePage()
         this.initiateEventListeners()
         this.loadNewLists()
-        
     }
 
     initiateEventListeners() {
@@ -26,7 +23,6 @@ export default class Mainpage {
         this.addCompletedTasksEvent()
         this.addTodayBtnEvent()
         this.addWeekBtnEvent()
-        
     }
 
     //Event listeners
@@ -216,18 +212,6 @@ export default class Mainpage {
         listArr.push({title, details, date, priority, list, completed});
         localStorage.setItem(list, JSON.stringify(listArr));
         return {title, details, date, priority, list, completed};
-    }
-
-    //Currently only adds img to a tag
-    generatePage() {
-       const headerLeft = document.querySelector('.header-left')
-        const sideMenuBtnContainer = document.querySelector('.open-side-menu-container')
-        sideMenuBtnContainer.firstChild.remove();
-        const sideMenuBtnImg = document.createElement('img')
-        sideMenuBtnImg.src = sideMenuImg
-        sideMenuBtnImg.id = 'open-side-menu'
-        sideMenuBtnImg.setAttribute('alt', 'Open side menu button')
-        sideMenuBtnContainer.appendChild(sideMenuBtnImg)
     }
 
     
