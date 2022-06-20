@@ -5,4 +5,4 @@ import "./style.css"
 
 const mainpage = new Mainpage();
 
-const main = new TaskList('main');
+// const main = new TaskList('main');

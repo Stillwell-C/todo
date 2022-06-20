@@ -25,7 +25,7 @@ export default class Mainpage {
         this.addCompletedTasksEvent()
         this.addTodayBtnEvent()
         this.addWeekBtnEvent()
-        this.addSideMenuEvent()
+        
     }
 
     //Event listeners
@@ -70,7 +70,7 @@ export default class Mainpage {
     }
 
     addSideMenuEvent() {
-        const sideMenuBtn = document.querySelector('.open-side-menu-container')
+        const sideMenuBtn = document.getElementById('open-side-menu')
         const sideMenu = document.querySelector('.sidebar')
         const mainBody = document.querySelector('.main-body')
         sideMenuBtn.addEventListener('click', () => {
@@ -227,6 +227,8 @@ export default class Mainpage {
         sideMenuBtnImg.id = 'open-side-menu'
         sideMenuBtnImg.setAttribute('alt', 'Open side menu button')
         sideMenuBtnContainer.appendChild(sideMenuBtnImg)
+
+        this.addSideMenuEvent()
     }
 
     
