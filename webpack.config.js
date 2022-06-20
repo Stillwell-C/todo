@@ -38,7 +38,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Todo List',
-      filename: 'index.[contenthash].html',
+      filename: 'index.html',
       template: 'src/template.html',
       favicon: './src/assets/favicon.png'
     })
